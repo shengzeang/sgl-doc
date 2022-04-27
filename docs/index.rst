@@ -18,14 +18,14 @@ Lumache has its documentation hosted on Read the Docs.
 Contents
 --------
 
-..  toctree::
-    :caption: Table of Contents
-    :maxdepth: 2
-    :titlesonly:
+.. toctree::
+   :caption: Table of Contents
+   :maxdepth: 2
+   :titlesonly:
 
-    Overview <overview/overview>
-    Installation <installation/installation_guide>
-    Quick Start <quick_start/quick_start>
-    Examples <examples/examples>
-    Advanced Usage <advanced_usage/advanced_usage>
-    Research and Publications <research_and_publications/research_and_publications>
+   Overview <overview/overview>
+   Installation <installation/installation_guide>
+   Quick Start <quick_start/quick_start>
+   Examples <examples/examples>
+   Advanced Usage <advanced_usage/advanced_usage>
+   Research and Publications <research_and_publications/research_and_publications>
