@@ -1,7 +1,11 @@
+import os
+import sys
 import sphinx_rtd_theme
 from recommonmark.parser import CommonMarkParser
 from recommonmark.transform import AutoStructify
 
+
+sys.path.insert(0, os.path.abspath('./../../'))
 
 # Configuration file for the Sphinx documentation builder.
 
