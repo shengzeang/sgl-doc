@@ -110,7 +110,8 @@ arXiv:2108.10097, 2021. (arXiv preprint).
 License
 ------------------------------------------------
 
-The entire codebase is under [MIT license](LICENSE).
+The entire codebase is under `MIT
+license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
 
 
 .. toctree::
