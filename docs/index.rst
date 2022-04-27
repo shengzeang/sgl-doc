@@ -1,9 +1,7 @@
-Welcome to SGL's documentation!
+SGL: Scalable Graph Learning
 ===================================
 
 
-Contents
---------
 
 .. toctree::
    :caption: Table of Contents
