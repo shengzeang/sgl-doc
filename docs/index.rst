@@ -22,72 +22,6 @@ Library Highlights
 + **Ease of use**: User-friendly interfaces of implementing existing scalable GNNs and executing various downstream
   tasks.
 
-------------------------------------------------
-Installation
-------------------------------------------------
-
-Please refer to our `Installation
-Guide <./installation/installation.html>`__.
-
-
-------------------------------------------------
-Quick Start
-------------------------------------------------
-
-A quick start example is given by:
-
-.. code:: python
-
-   from sgl.dataset import Planetoid
-   from sgl.models.homo import SGC
-   from sgl.tasks import NodeClassification
-
-   dataset = Planetoid("pubmed", "./", "official")
-   model = SGC(prop_steps=3, feat_dim=dataset.num_features, num_classes=dataset.num_classes)
-
-   device = "cuda:0"
-   test_acc = NodeClassification(dataset, model, lr=0.1, weight_decay=5e-5, epochs=200, device=device).test_acc
-
-
-An example of the auto neural network search functionality is as follows:
-
-.. code:: python
-
-   import torch
-   from openbox.optimizer.generic_smbo import SMBO
-
-   from sgl.dataset.planetoid import Planetoid
-   from sgl.search.search_config import ConfigManager
-
-   dataset = Planetoid("cora", "./", "official")
-   device = torch.device(f"cuda:{0}" if torch.cuda.is_available() else "cpu")
-
-   ## Define Initial Arch and Configuration
-   initial_arch = [2, 0, 1, 2, 3, 0, 0]
-   configer = ConfigManager(initial_arch)
-   configer._setParameters(dataset, device, 64, 200, 1e-2, 5e-4)
-
-   ## Define Search Parameters
-   dim = 7
-   bo = SMBO(configer._configFunction,
-            configer._configSpace(),
-            num_objs=2,
-            num_constraints=0,
-            max_runs=3500,
-            surrogate_type='prf',
-            acq_type='ehvi',
-            acq_optimizer_type='local_random',
-            initial_runs=2 * (dim + 1),
-            init_strategy='sobol',
-            ref_point=[-1, 0.00001],
-            time_limit_per_trial=5000,
-            task_id='quick_start',
-            random_state=1)
-
-   ## Search
-   history = bo.run()
-   print(history)
-
 
 ------------------------------------------------
 Related Publications
@@ -115,13 +49,21 @@ license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
 
 
 .. toctree::
-   :caption: Table of Contents
-   :maxdepth: 2
-   :titlesonly:
+  :caption: Get Started
+  :maxdepth: 2
 
-   Overview <overview/overview>
-   Installation <installation/installation>
-   Quick Start <quick_start/quick_start>
-   Examples <examples/examples>
-   Advanced Usage <advanced_usage/advanced_usage>
-   Research and Publications <research_and_publications/research_and_publications>
+  Overview <get_started/overview/overview>
+  Installation <get_started/installation/installation>
+  Quick Start <get_started/quick_start/quick_start>
+  Research and Publications <get_started/research_and_publications/research_and_publications>
+
+
+.. toctree:: 
+  :caption: API Reference
+
+  data <api/data/data>
+  datasets <api/data/data>
+  operators <api/data/data>
+  models <api/data/data>
+  tasks <api/data/data>
+  search <api/data/data>
