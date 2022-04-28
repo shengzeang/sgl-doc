@@ -51,6 +51,7 @@ license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
 .. toctree::
   :caption: Get Started
   :maxdepth: 2
+  :titlesonly:
 
   Overview <get_started/overview/overview>
   Installation <get_started/installation/installation>
