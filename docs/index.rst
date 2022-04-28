@@ -61,6 +61,7 @@ license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
 
 .. toctree:: 
   :caption: API Reference
+  :maxdepth: 2
 
   data <api/data/data>
   datasets <api/datasets/datasets>
