@@ -56,7 +56,6 @@ license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
   Overview <get_started/overview/overview>
   Installation <get_started/installation/installation>
   Quick Start <get_started/quick_start/quick_start>
-  Research and Publications <get_started/research_and_publications/research_and_publications>
 
 
 .. toctree:: 
