@@ -63,8 +63,8 @@ license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
   :caption: API Reference
 
   data <api/data/data>
-  datasets <api/data/data>
-  operators <api/data/data>
-  models <api/data/data>
-  tasks <api/data/data>
-  search <api/data/data>
+  datasets <api/datasets/datasets>
+  operators <api/operators/operators>
+  models <api/models/models>
+  tasks <api/tasks/tasks>
+  search <api/search/search>
