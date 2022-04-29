@@ -134,10 +134,18 @@ Then, there exist two important virtual functions to implement:
 + :obj:`process`: process the raw files fetched by :obj:`download` and store the processed file defined by the data class :obj:`Graph`.
 
 The data class :obj:`Graph` is designed to store the critical data for the homogeneous graph; the corresponding data class for the heterogeneous graph is :obj:`HeteroGraph`.
+To instantiate :obj:`Graph`, one needs to at least provide the following information:
 
++ :obj:`row`: the row index of the edges in the graph;
++ :obj:`col`: the column index of the edges in the graph; 
++ :obj:`edge_weight`: the weight of the edges in the graph;
++ :obj:`edge_type`: the type of the edges in the graph;
++ :obj:`num_node`: the total number of nodes in the graph;
++ :obj:`node_type`: the type of the nodes in the graph.
 
+The datasets in the `datasets part <../../api/datasets/datasets.html>`__ all follow the same construct scheme.
 
-Please refer to the `datasets part <../../api/datasets/datasets.html>`__ for more detailed introduction.
+Please refer to the `data part <../../api/data/data.html>`__ for more detailed introduction of the two base classes, :obj:`NodeDataset` and :obj:`HeteroNodeDataset`.
 
 
 ____________________________________________
