@@ -2,26 +2,51 @@
 Quick Start
 ###################
 
-In this short tutorial, we will go through the basic use of SGL. The tutorial has following parts:
+In this short tutorial, we will go through the basic use of SGL. The tutorial is composed of following parts:
 
 .. contents::
     :local:
 
 
-Execute various graph-related tasks
+Basic usage
 ______________________________________________
 
 
 
+___________________________________
+Execute graph-related tasks
+___________________________________
+
+
+_________________________________________
+Auto neural architrcture search
+_________________________________________
+
+
+
+
+Advanced usage
+___________________________________
+
+
+
+____________________________________________
 Build models under SGAP paradigm
 ____________________________________________
 
 
+________________________________________
+Implement user-defined graph operators
+________________________________________
 
-Implement user-defined graph operators and message operator
-________________________________________________________________
 
 
+_________________________________________
+Implement user-defined message operators
+_________________________________________
 
+
+_______________________________________
 Adopt user-defined datasets
 _______________________________________
+
