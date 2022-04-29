@@ -30,7 +30,9 @@ The main design goal of SGL is to support scalable graph learning. SGL adopts th
     + **SGAP** again propagates and aggregates the outputs of the previous stage at the graph level.
 
 
-To note that, the first :math:`message\_aggregate` operation in the **Preprocessing** stage will be transferred to the **Training**  stage if it contains learnable parameters; and the second :math:`message\_aggregate` operation in the **Postprocessing** stage is prohibited to contain learnable parameters.
+.. note:: 
+
+    The first :math:`message\_aggregate` operation in the **Preprocessing** stage will be transferred to the **Training**  stage if it contains learnable parameters; and the second :math:`message\_aggregate` operation in the **Postprocessing** stage is prohibited to contain learnable parameters.
 
 Compared to conventional GNN training process, **SGAP** has mainly two advantages:
 
@@ -60,4 +62,8 @@ To construct a GNN model in SGL, the users only need to fill in some blanks with
             self._pre_msg_op = LastMessageOp()
             self._base_model = LogisticRegression(feat_dim, num_classes)
 
-:math:`LaplacianGraphOp`, :math:`LastMessageOp`,and :math:`LogisticRegreesion` are pre-defined **Graph Operator**, **Message Operator**, and **Base Model**, respectively. Please refer to `models part <../../api/models/models.html>`__ for the detailed API for constructing models. SGL also provides simple interfaces for defining new **Graph Operators** and **Message Operators**, please refer to `operators part <../../api/operators/operators.html>`__ for more details.
+.. note:: 
+
+    :math:`LaplacianGraphOp`, :math:`LastMessageOp`,and :math:`LogisticRegreesion` are pre-defined **Graph Operator**, **Message Operator**, and **Base Model**, respectively. 
+
+Please refer to `models part <../../api/models/models.html>`__ for the detailed API for constructing models. SGL also provides simple interfaces for defining new **Graph Operators** and **Message Operators**, please refer to `operators part <../../api/operators/operators.html>`__ for more details.
