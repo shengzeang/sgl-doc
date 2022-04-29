@@ -2,7 +2,7 @@
 Quick Start
 ###################
 
-In this short tutorial, we will go through the basic use of SGL. The tutorial is composed of following parts:
+In this short tutorial, we will qucikly go through the basic and advanced usage of SGL. The tutorial is composed of following parts:
 
 .. contents::
     :local:
@@ -19,9 +19,11 @@ ___________________________________
 
 
 _________________________________________
-Auto neural architrcture search
+Auto neural architrcture search 
 _________________________________________
-
+.. todo:: 
+    
+    add introductory examples
 
 
 
