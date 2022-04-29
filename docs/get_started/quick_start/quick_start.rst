@@ -73,7 +73,10 @@ The node classification task can be executed by the following code:
     device = "cuda:0"
     test_acc = NodeClassification(dataset, model, lr=0.1, weight_decay=5e-5, epochs=200, device=device).test_acc
 
-The possible output might be:
+The users have to input the adopted dataset, the adopted GNN model, and several hyperparameters before executing a task.
+
+The possible output of the above code might be:
+
 .. code:: bash
 
     Preprocessing done in 0.1280s
@@ -101,6 +104,8 @@ The possible output might be:
     Optimization Finished!
     Total time elapsed: 1.9751s
     Best val: 0.8020, best test: 0.7920
+
+Please refer to the `tasks part <../../api/tasks/tasks>`__ for more details of executing graph-related tasks.
 
 _________________________________________
 Auto neural architrcture search (TODO)
