@@ -5,7 +5,7 @@ Overview
 **SGL** is a Graph Neural Network (GNN) toolkit targeting scalable graph learning, which supports deep graph learning on extremely large datasets. SGL allows users to easily implement scalable graph neural networks and evaluate its performance on various downstream tasks like node classification, node clustering, and link prediction. Further, SGL supports auto neural architecture search functionality based on `OpenBox <https://github.com/PKU-DAIR/open-box>`__. SGL is designed and developed by the graph learning team from the `DAIR Lab <https://cuibinpku.github.io/index.html>`__ at Peking University.
 
 
-------------------------
+
 Main Functionalities
 ------------------------
 
@@ -14,7 +14,7 @@ Main Functionalities
 + **Auto neural architecture search** on given tasks, datasets and objectives.
 
 
--------------------------
+
 Training paradigm
 -------------------------
 
@@ -40,7 +40,7 @@ Compared to conventional GNN training process, **SGAP** has mainly two advantage
 2. The dependencies between training examples have been fully taken care of in the **Preprocessing** stage. Thus, the training examples can be freely split to small batches to feed into the model in the **Training** stage, which boosts the efficiency and the scalability of the training process.
 
 
--------------------------------
+
 Model construction paradigm
 -------------------------------
 
