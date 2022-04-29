@@ -60,7 +60,7 @@ The GNN model SGC is designed for homogeneous graphs, and thus can be imported f
 + The 2nd argument :obj:`feat_dim` stands for the dimension of the input feature;
 + The 3rd argument :obj:`num_classes` stands for the dimension of the output representation.
 
-Please refer to the `models part <../../api/models/models>`__ for more details of SGC and other GNN models.
+Please refer to the `models part <../../api/models/models.html>`__ for more details of SGC and other GNN models.
 
    
 Execute tasks
@@ -105,7 +105,7 @@ The possible output of the above code might be:
     Total time elapsed: 1.9751s
     Best val: 0.8020, best test: 0.7920
 
-Please refer to the `tasks part <../../api/tasks/tasks>`__ for more details of executing graph-related tasks.
+Please refer to the `tasks part <../../api/tasks/tasks.html>`__ for more details of executing graph-related tasks.
 
 _________________________________________
 Auto neural architrcture search (TODO)
