@@ -2,7 +2,9 @@
 Installation
 ###################
 
-Some datasets in SGL are constructed based on `PyG <https://github.com/pyg-team/pytorch_geometric>`__. Please follow the instructions below to install PyG first before installing SGL: https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html.
+Some datasets in SGL are constructed based on `PyG <https://github.com/pyg-team/pytorch_geometric>`__. 
+
+Please follow the instructions below to install PyG first before installing SGL: https://pytorch-geometric.readthedocs.io/en/latest/notes/installation.html.
 
 ______________________
 Install from pip
