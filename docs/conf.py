@@ -27,6 +27,9 @@ extensions = ['recommonmark',
               'sphinx.ext.coverage',
               'sphinx.ext.mathjax',
               'sphinx.ext.napoleon',
+              'sphinx.ext.autosummary',
+              'sphinx.ext.viewcode',
+              'sphinx.ext.githubpages',
               'sphinx_markdown_tables']
 
 intersphinx_mapping = {
