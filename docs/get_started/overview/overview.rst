@@ -57,21 +57,5 @@ To fulfill this goal, SGL designs three important modules:
 + **Base Model**: to carry out the functionality of :math:`model\_training`. It can be not only deep learning models like MLP, but also traditional machine learning methods like SVM and random forest.
 
 To construct a GNN model in SGL, the users only need to fill in some blanks with pre-/user-defined **Graph Operators**, **Message Operators** and **Base Models**. 
-The code of SGC under SGL is as follows:
-
-.. code:: python
-
-    class SGC(BaseSGAPModel):
-        def __init__(self, prop_steps, feat_dim, num_classes):
-            super(SGC, self).__init__(prop_steps, feat_dim, num_classes)
-
-            self._pre_graph_op = LaplacianGraphOp(prop_steps, r=0.5)
-            self._pre_msg_op = LastMessageOp()
-            self._base_model = LogisticRegression(feat_dim, num_classes)
-
-.. note:: 
-
-    :math:`LaplacianGraphOp`, :math:`LastMessageOp`,and :math:`LogisticRegreesion` are pre-defined **Graph Operator**, **Message Operator**, and **Base Model**, respectively. 
-
 Please refer to `models part <../../api/models/models.html>`__ for the detailed API for constructing models. 
 SGL also provides simple interfaces for defining new **Graph Operators** and **Message Operators**, please refer to `operators part <../../api/operators/operators.html>`__ for more details.

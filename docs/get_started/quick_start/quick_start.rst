@@ -2,7 +2,7 @@
 Quick Start
 ###################
 
-In this short tutorial, we will qucikly go through the basic and advanced usage of SGL. 
+In this short tutorial, we will qucikly go through the basic and the advanced usage of SGL. 
 The tutorial is composed of following parts:
 
 .. contents::
@@ -117,25 +117,120 @@ _________________________________________
 Advanced usage
 ___________________________________
 
+In this part, we will introduce the advanced usage of SGL, including adopting user-defined datasets, building models under SGAP paradigm, implementing new graph operators and message operators.
+
+
+_______________________________________
+Adopt user-defined datasets
+_______________________________________
+
+SGL designs two base classes, :obj:`NodeDataset` and :obj:`HeteroNodeDataset`, for the homogeneous graph datasets and the heterogeneous graph datasets, respectively.
+We will take implementing a homogeneous graph dataset as an example below to explain how to adopt user-defined datasets.
+
+To implement a new homogeneous graph dataset, one has to first to inherit the base class :obj:`NodeDataset`, whose detailed introduction can be found in the `data part <../../api/data/data.html>`__.
+Then, there exist two important virtual functions to implement: 
+
++ :obj:`download`: download the raw files of the dataset from the Interent and store them in pre-defined places;
++ :obj:`process`: process the raw files fetched by :obj:`download` and store the processed file defined by the data class :obj:`Graph`.
+
+The data class :obj:`Graph` is designed to store the critical data for the homogeneous graph; the corresponding data class for the heterogeneous graph is :obj:`HeteroGraph`.
+
+
+
+Please refer to the `datasets part <../../api/datasets/datasets.html>`__ for more detailed introduction.
 
 
 ____________________________________________
 Build models under SGAP paradigm
 ____________________________________________
 
+SGL adopts the `SGAP <https://arxiv.org/abs/2203.00638>`__ (Scalable Graph Architecture Paradigm) as its training paradigm.
+Corresponding to that, the model construction paradigm differs from the conventional `message passing <http://proceedings.mlr.press/v70/gilmer17a/gilmer17a.pdf>`__ paradigm.
+The detailed introduciton of the model construction paradigm of SGL is provided in `overview <../overview/overview.html>`__.
+Below will explain how to build a SGC in SGL.
+
+As introduced in `overview <../overview/overview.html>`__, a GNN model in SGL is composed of five parts:
+
++ :math:`pre\_graph\_op`, :math:`pre\_msg\_op`: **Graph Operator** and **Message Operator** for the Preprocessing stage;
++ :math:`base\_model`: **Base Model** for the Training stage;
++ :math:`post\_graph\_op`, :math:`post\_msg\_op`: **Graph Operator** and **Message Operator** for the Postprocessing stage.
+
+Thus, users only have to assign each module with pre-/user-defined Graph Operator/Message operator/Base Model when building models after inheriting the base class :obj:`BaseSGAPModel`.
+The behaviors of the adopted different Graph Operators, Message Operators and Base Models determine the behaviors of the built GNN models.
+The code of building SGC is provided below:
+
+.. code:: python
+
+    from sgl.models.base_model import BaseSGAPModel
+    from sgl.models.simple_models import LogisticRegression
+    from sgl.operators.graph_op import LaplacianGraphOp
+    from sgl.operators.message_op import LastMessageOp
+
+
+    class SGC(BaseSGAPModel):
+        def __init__(self, prop_steps, feat_dim, num_classes):
+            super(SGC, self).__init__(prop_steps, feat_dim, num_classes)
+
+            self._pre_graph_op = LaplacianGraphOp(prop_steps, r=0.5)
+            self._pre_msg_op = LastMessageOp()
+            self._base_model = LogisticRegression(feat_dim, num_classes)
+
+.. note:: 
+
+    :math:`LaplacianGraphOp`, :math:`LastMessageOp`,and :math:`LogisticRegreesion` are pre-defined Graph Operator, Message Operator, and Base Model, respectively. 
+
+.. note:: 
+
+    SGC does not have the Postprocessing stage in its training process. Thus, the modules used for the Postprocessing stage do not exist in the construction of SGC.
+
+In the following parts of this tutorial, we will introduce ways to implement new Graph Operators and Message Operators.
+
 
 ________________________________________
-Implement user-defined graph operators
+Implement new Graph Operators
 ________________________________________
 
+As introduced in `overview <../overview/overview.html>`__, the behaviors of the Graph Operators can be represented as follows: :math:`\textbf{M}=graph\_propagate(\textbf{A}, \textbf{X})`.
+Thus, the critical part of implementing new Graph Operators is to determine the value of the matrix :math:`\textbf{A}`.
+
+In SGL, users only need to implement the virtual function :math:`construct\_adj`, which takes in the original adjacency matrix of the graph and outputs the desired propagation matrix after inheriting the base class :obj:`GraphOp`.
+Below is the implementation of the PPR (Personalized PageRank) Graph Operator:
+
+.. code:: python
+
+    class PprGraphOp(GraphOp):
+        def __init__(self, prop_steps, r=0.5, alpha=0.15):
+            super(PprGraphOp, self).__init__(prop_steps)
+            self.__r = r
+            self.__alpha = alpha
+
+        def _construct_adj(self, adj):
+            adj_normalized = adj_to_symmetric_norm(adj, self.__r)
+            adj_normalized = (1 - self.__alpha) * adj_normalized + self.__alpha * sp.eye(adj.shape[0])
+            return adj_normalized.tocsr()
+
+Please refer to `operators part <../../api/operators/operators.html>`__ for more detailed introduction.
 
 
 _________________________________________
-Implement user-defined message operators
+Implement new Message Operators
 _________________________________________
 
+Similar to implementing new Graph Operators, implementing new Message Operators is easy in SGL.
+The users need to determine the behaviors of the new Message Operators represented in :math:`\textbf{X}'=message\_aggregate(\textbf{M})`.
 
-_______________________________________
-Adopt user-defined datasets
-_______________________________________
+Practically speaking, users have to implement the virtual function :math:`combine` function after inheriting the base class :obj:`MessageOp`.
+The code below provides the implementation of the ConcatMessageOp in SGL:
+
+.. code:: python
+
+    class ConcatMessageOp(MessageOp):
+        def __init__(self, start, end):
+            super(ConcatMessageOp, self).__init__(start, end)
+            self._aggr_type = "concat"
+
+        def _combine(self, feat_list):
+            return torch.hstack(feat_list[self._start:self._end])
+
+Please refer to `operators part <../../api/operators/operators.html>`__ for more detailed introduction.
 
