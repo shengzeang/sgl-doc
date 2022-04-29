@@ -143,7 +143,7 @@ To instantiate :obj:`Graph`, one needs to at least provide the following informa
 + :obj:`num_node`: the total number of nodes in the graph;
 + :obj:`node_type`: the type of the nodes in the graph.
 
-The datasets in the `datasets part <../../api/datasets/datasets.html>`__ all follow the same construct scheme.
+The datasets in the `datasets part <../../api/datasets/datasets.html>`__ all follow the same construction scheme.
 
 Please refer to the `data part <../../api/data/data.html>`__ for more detailed introduction of the two base classes, :obj:`NodeDataset` and :obj:`HeteroNodeDataset`.
 
@@ -159,9 +159,9 @@ Below will explain how to build a SGC in SGL.
 
 As introduced in `overview <../overview/overview.html>`__, a GNN model in SGL is composed of five parts:
 
-+ :math:`pre\_graph\_op`, :math:`pre\_msg\_op`: **Graph Operator** and **Message Operator** for the Preprocessing stage;
-+ :math:`base\_model`: **Base Model** for the Training stage;
-+ :math:`post\_graph\_op`, :math:`post\_msg\_op`: **Graph Operator** and **Message Operator** for the Postprocessing stage.
++ *pre_graph_op*, *pre_msg_op*: **Graph Operator** and **Message Operator** for the Preprocessing stage;
++ *base_model*: **Base Model** for the Training stage;
++ *post_graph_op*, *post_msg_op*: **Graph Operator** and **Message Operator** for the Postprocessing stage.
 
 Thus, users only have to assign each module with pre-/user-defined Graph Operator/Message operator/Base Model when building models after inheriting the base class :obj:`BaseSGAPModel`.
 The behaviors of the adopted different Graph Operators, Message Operators and Base Models determine the behaviors of the built GNN models.
@@ -185,7 +185,7 @@ The code of building SGC is provided below:
 
 .. note:: 
 
-    :math:`LaplacianGraphOp`, :math:`LastMessageOp`,and :math:`LogisticRegreesion` are pre-defined Graph Operator, Message Operator, and Base Model, respectively. 
+    The *LaplacianGraphOp*, *LastMessageOp*,and *LogisticRegreesion* are pre-defined Graph Operator, Message Operator, and Base Model, respectively. 
 
 .. note:: 
 
@@ -201,7 +201,7 @@ ________________________________________
 As introduced in `overview <../overview/overview.html>`__, the behaviors of the Graph Operators can be represented as follows: :math:`\textbf{M}=graph\_propagate(\textbf{A}, \textbf{X})`.
 Thus, the critical part of implementing new Graph Operators is to determine the value of the matrix :math:`\textbf{A}`.
 
-In SGL, users only need to implement the virtual function :math:`construct\_adj`, which takes in the original adjacency matrix of the graph and outputs the desired propagation matrix after inheriting the base class :obj:`GraphOp`.
+In SGL, users only need to implement the virtual function *construct_adj*, which takes in the original adjacency matrix of the graph and outputs the desired propagation matrix after inheriting the base class :obj:`GraphOp`.
 Below is the implementation of the PPR (Personalized PageRank) Graph Operator:
 
 .. code:: python
@@ -227,7 +227,7 @@ _________________________________________
 Similar to implementing new Graph Operators, implementing new Message Operators is easy in SGL.
 The users need to determine the behaviors of the new Message Operators represented in :math:`\textbf{X}'=message\_aggregate(\textbf{M})`.
 
-Practically speaking, users have to implement the virtual function :math:`combine` function after inheriting the base class :obj:`MessageOp`.
+Practically speaking, users have to implement the virtual function *combine* function after inheriting the base class :obj:`MessageOp`.
 The code below provides the implementation of the ConcatMessageOp in SGL:
 
 .. code:: python
