@@ -49,7 +49,7 @@ Here we import the GNN model SGC as follows:
 .. code:: python
 
     from sgl.models.homo import SGC
-    model = SGC(prop_steps=3, feat_dim=dataset.num_features, num_classes=dataset.num_classes)
+    model = SGC(prop_steps=3, feat_dim=dataset.num_features, output_dim=dataset.num_classes)
 
 SGL supports not only GNNs designed for homogeneous graphs but also GNNs designed for heterogeneous graphs.
 The two different categories of models reside in :obj:`sgl.models.homo` and :obj:`sgl.models.hetero`, respectively.
@@ -58,7 +58,7 @@ The GNN model SGC is designed for homogeneous graphs, and thus can be imported f
 
 + The 1st argument :obj:`prop_steps` stands for the propagation depth;
 + The 2nd argument :obj:`feat_dim` stands for the dimension of the input feature;
-+ The 3rd argument :obj:`num_classes` stands for the dimension of the output representation.
++ The 3rd argument :obj:`output_dim` stands for the dimension of the output representation.
 
 Please refer to the `models part <../../api/models/models.html>`__ for more details of SGC and other GNN models.
 
@@ -176,12 +176,12 @@ The code of building SGC is provided below:
 
 
     class SGC(BaseSGAPModel):
-        def __init__(self, prop_steps, feat_dim, num_classes):
-            super(SGC, self).__init__(prop_steps, feat_dim, num_classes)
+        def __init__(self, prop_steps, feat_dim, output_dim):
+            super(SGC, self).__init__(prop_steps, feat_dim, output_dim)
 
             self._pre_graph_op = LaplacianGraphOp(prop_steps, r=0.5)
             self._pre_msg_op = LastMessageOp()
-            self._base_model = LogisticRegression(feat_dim, num_classes)
+            self._base_model = LogisticRegression(feat_dim, output_dim)
 
 .. note:: 
 
