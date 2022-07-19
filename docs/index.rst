@@ -64,7 +64,8 @@ license <https://github.com/PKU-DAIR/SGL/blob/main/LICENSE>`__.
 
   data <api/data/data>
   datasets <api/datasets/datasets>
-  operators <api/operators/operators>
+  graph operators <api/operators/graph_operators>
+  message operators <api/operators/message_operators>
   models <api/models/models>
   tasks <api/tasks/tasks>
   search <api/search/search>
